@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(elevation_mapping)
+project(nzn_mapping)
 
 set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
 
@@ -25,6 +25,8 @@ find_package(catkin REQUIRED COMPONENTS
   tf
   tf_conversions
   eigen_conversions
+  sm_common
+  sm_timing
 )
 
 ## System dependencies are found with CMake's conventions
@@ -39,8 +41,8 @@ if(NOT kindr_FOUND)
   pkg_check_modules(kindr kindr REQUIRED)
 endif()
 
-pkg_check_modules(SM_COMMON schweizer-messer-common REQUIRED)
-pkg_check_modules(SM_TIMING schweizer-messer-timing REQUIRED)
+#pkg_check_modules(SM_COMMON sm_common REQUIRED)
+#pkg_check_modules(SM_TIMING sm_timing REQUIRED)
 
 
 ###################################
@@ -83,8 +85,8 @@ include_directories(
   ${Kindr_INCLUDE_DIRS}
   ${Eigen_INCLUDE_DIRS}
   ${kindr_INCLUDE_DIRS}
-  ${SM_COMMON_INCLUDE_DIRS}
-  ${SM_TIMING_INCLUDE_DIRS}
+  ${sm_common_INCLUDE_DIRS}
+  ${sm_timing_INCLUDE_DIRS}
 )
 
 ## Declare a cpp library
@@ -94,7 +96,7 @@ include_directories(
 
 ## Declare a cpp executable
 add_executable(
-  ${PROJECT_NAME}
+  nzn_mapping
   src/elevation_mapping_node.cpp
   src/ElevationMapping.cpp
   src/ElevationMap.cpp
@@ -108,9 +110,4 @@ add_executable(
 
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(
-  ${PROJECT_NAME}
-  ${catkin_LIBRARIES}
-  ${SM_COMMON_LIBRARIES}
-  ${SM_TIMING_LIBRARIES}
-)
+target_link_libraries(nzn_mapping ${catkin_LIBRARIES} ${sm_common_LIBRARIES} ${sm_timing_LIBRARIES} "${LIBRARIES_FROM_REFERENCES}")

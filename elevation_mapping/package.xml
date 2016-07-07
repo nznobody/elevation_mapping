@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>elevation_mapping</name>
-  <version>0.2.0</version>
-  <description>Generates an elevation map from distance measurements and robot pose information.</description>
+  <name>nzn_mapping</name>
+  <version>0.2.1</version>
+  <description>Generates an elevation map from distance measurements and robot pose information. Based off original code by Peter Frankhouser et. al.</description>
   <maintainer email="pfankhauser@ethz.ch">Peter Fankhauser</maintainer>
   <license>MIT</license>
   <url type="website">http://github.com/ethz-asl/elevation_mapping</url>
